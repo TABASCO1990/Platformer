@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
     const string MoveX = "Horizontal";
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     private float _directionMovement;    
     private float _degreeRotationLeft = 180;
     private float _degreeRotationRight = 0;
+    private float _hitPower = 6.6f;
     private Rigidbody2D _rigidbody2D;
     private bool _isGround;
 
@@ -62,5 +64,12 @@ public class Player : MonoBehaviour
     {
         if(transform.position.y < -5)
             _leve.Restart();
+    }
+
+    public void TakeDamage()
+    {
+        _rigidbody2D.AddForce(Vector3.up * _hitPower, ForceMode2D.Impulse);
+        transform.GetComponent<BoxCollider2D>().enabled = false;
+        transform.GetComponent<SpriteRenderer>().color = Color.red;
     }
 }
