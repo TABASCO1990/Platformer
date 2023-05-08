@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         _directionMovement = Input.GetAxisRaw(MoveX);
         
         _rigidbody2D.velocity = new Vector2(_directionMovement * _speed, _rigidbody2D.velocity.y);
-        _animator.SetFloat("Walk", Mathf.Abs(_directionMovement));
+        _animator.SetFloat(States.Walk, Mathf.Abs(_directionMovement));
     }
 
     private void Jump()
