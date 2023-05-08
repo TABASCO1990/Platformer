@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class Enemy : MonoBehaviour
     private float _degreeRotationRight = 0;
     private float _hitPower = 6.6f;
     private float _lengthRay = 1.0f;
-    private bool _isRotateLeft = true;   
+    private bool _isRotateLeft = true;
 
     private void Update()
     {
@@ -49,14 +47,7 @@ public class Enemy : MonoBehaviour
         {
             collision.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * _hitPower, ForceMode2D.Impulse);
-            collision.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
-            StartCoroutine(Lose());
+            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
-    }
-
-    private IEnumerator Lose()
-    {
-        yield return new WaitForSeconds (1.2f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
